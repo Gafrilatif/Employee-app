@@ -10,11 +10,10 @@ interface Employee {
 
 function App() {
   const [employees, setEmployees] = useState<Employee[]>([]);
-  const [search, setSearch] = useState(""); // New State for the input box
+  const [search, setSearch] = useState(""); 
 
   const getEmployees = async (searchTerm = "") => {
     try {
-      // If there is a search term, add it to the URL. If not, fetch all.
       const url = searchTerm 
         ? `http://localhost:5000/employees?name=${searchTerm}` 
         : `http://localhost:5000/employees`;
@@ -27,15 +26,13 @@ function App() {
     }
   };
 
-  // Initial load (fetch all)
   useEffect(() => {
     getEmployees();
   }, []);
 
-  // Handle Form Submit (When user hits Enter or clicks Search)
   const onSubmitForm = (e: React.FormEvent) => {
-    e.preventDefault(); // Stop page refresh
-    getEmployees(search); // Call API with the search text
+    e.preventDefault(); 
+    getEmployees(search); 
   };
 
   return (

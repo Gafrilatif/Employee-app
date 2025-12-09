@@ -5,22 +5,12 @@ const pool = require('./db');
 const app = express();
 const PORT = 5000;
 
-// Middleware
-app.use(cors()); // Allow React (port 5173) to talk to Node (port 5000)
+app.use(cors()); 
 app.use(express.json());
-
-// ROUTE: Get all employees
-// server/index.js
 
 app.get('/employees', async (req, res) => {
   try {
-    // 1. Get the 'name' from the URL (req.query)
     const { name } = req.query; 
-
-    // 2. Build the Query logic
-    // If name is provided, search for it using ILIKE (Case-insensitive search).
-    // If not, just select all.
-    // The || operator connects the '%' wildcards to the search term.
     
     let queryText = 'SELECT * FROM employees';
     let queryParams = [];
