@@ -56,6 +56,16 @@ app.put('/employees/:id', async (req, res) => {
   }
 });
 
+app.get('/employees/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const employee = await pool.query("SELECT * FROM employees WHERE id = $1", [id]);
+    res.json(employee.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 app.delete('/employees/:id', async (req, res) => {
   try {
     const { id } = req.params;
