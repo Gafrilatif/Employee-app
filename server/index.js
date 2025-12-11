@@ -29,6 +29,43 @@ app.get('/employees', async (req, res) => {
   }
 });
 
+app.post('/employees', async (req, res) => {
+  try {
+    const { name, role, email } = req.body; 
+    const newEmployee = await pool.query(
+      'INSERT INTO employees (name, role, email) VALUES ($1, $2, $3) RETURNING *',
+      [name, role, email]
+    );
+    res.json(newEmployee.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.put('/employees/:id', async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const { name, role, email } = req.body; 
+    const updateEmployee = await pool.query(
+      'UPDATE employees SET name = $1, role = $2, email = $3 WHERE id = $4',
+      [name, role, email, id]
+    );
+    res.json('Employee was updated!');
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete('/employees/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteEmployee = await pool.query('DELETE FROM employees WHERE id = $1', [id]);
+    res.json('Employee was deleted!');
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
