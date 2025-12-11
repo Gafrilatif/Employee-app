@@ -10,8 +10,6 @@ export default function AddEmployee() {
   useEffect(() => {
     if (isEditing) {
       const getEmployee = async () => {
-        const response = await fetch(`http://localhost:5000/employees/${id}`); 
-        
         const res = await fetch(`http://localhost:5000/employees`);
         const data = await res.json();
         const employee = data.find((emp: any) => emp.id === Number(id));
