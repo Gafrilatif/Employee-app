@@ -31,28 +31,33 @@ app.get('/employees', async (req, res) => {
 
 app.post('/employees', async (req, res) => {
   try {
-    const { name, role, email } = req.body; 
+    // We now extract status and start_date from the body
+    const { name, role, email, status, start_date } = req.body; 
+    
     const newEmployee = await pool.query(
-      'INSERT INTO employees (name, role, email) VALUES ($1, $2, $3) RETURNING *',
-      [name, role, email]
+      'INSERT INTO employees (name, role, email, status, start_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [name, role, email, status || 'Pre-boarding', start_date]
     );
     res.json(newEmployee.rows[0]);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
 app.put('/employees/:id', async (req, res) => {
   try {
     const { id } = req.params; 
-    const { name, role, email } = req.body; 
+    const { name, role, email, status, start_date } = req.body; 
+    
     const updateEmployee = await pool.query(
-      'UPDATE employees SET name = $1, role = $2, email = $3 WHERE id = $4',
-      [name, role, email, id]
+      'UPDATE employees SET name = $1, role = $2, email = $3, status = $4, start_date = $5 WHERE id = $6',
+      [name, role, email, status, start_date, id]
     );
     res.json('Employee was updated!');
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
