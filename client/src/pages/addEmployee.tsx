@@ -10,9 +10,9 @@ export default function AddEmployee() {
   useEffect(() => {
     if (isEditing) {
       const getEmployee = async () => {
-        const res = await fetch(`http://localhost:5000/employees`);
-        const data = await res.json();
-        const employee = data.find((emp: any) => emp.id === Number(id));
+        // Fetch ONLY the specific ID
+        const res = await fetch(`http://localhost:5000/employees/${id}`);
+        const employee = await res.json();
         
         if (employee) {
           setFormData({ name: employee.name, role: employee.role, email: employee.email });
