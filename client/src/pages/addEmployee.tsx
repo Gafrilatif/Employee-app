@@ -22,13 +22,18 @@ export default function AddEmployee() {
         const employee = await res.json();
         
         if (employee) {
+          let formattedDate = "";
+          if (employee.start_date) {
+              const dateObj = new Date(employee.start_date);
+              formattedDate = dateObj.toLocaleDateString('en-CA');
+          }
+
           setFormData({ 
             name: employee.name, 
             role: employee.role, 
             email: employee.email,
-            // Handle nulls if old data doesn't have these fields yet
             status: employee.status || "Pre-boarding",
-            start_date: employee.start_date ? employee.start_date.split('T')[0] : ""
+            start_date: formattedDate 
           });
         }
       };

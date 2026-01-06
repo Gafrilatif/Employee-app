@@ -1,14 +1,47 @@
-/* client/src/index.css */
-
 :root {
-  background-color: black; /* Makes the whole background black */
-  color: white;            /* Makes all text white by default */
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* --- DEFAULT (DARK MODE) --- */
+  --bg-body: #1a1a1a;
+  --bg-card: #2c2c2c;
+  --text-main: #ffffff;
+  --text-secondary: #aaaaaa;
+  
+  --table-header-bg: #343a40;
+  --table-border: #444;
+  
+  --input-bg: #333;
+  --input-border: #555;
+  
+  --btn-primary: #007bff;
 }
 
+/* --- LIGHT MODE OVERRIDES --- */
+.light-mode {
+  --bg-body: #f4f4f9;
+  --bg-card: #ffffff;
+  --text-main: #333333;
+  --text-secondary: #666666;
+  
+  --table-header-bg: #007bff; 
+  --table-border: #ddd;
+  
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+  
+  --btn-primary: #0056b3;
+}
+
+/* Apply variables to the page */
 body {
-  margin: 0;               /* Removes the annoying white border/margin */
-  padding: 0;
-  min-height: 100vh;       /* Ensures black color covers full height */
-  background-color: black;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+/* Common Input Styles */
+input, select {
+  background-color: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--input-border);
 }
