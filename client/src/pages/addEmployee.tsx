@@ -8,7 +8,7 @@ export default function AddEmployee() {
     role: "", 
     email: "", 
     status: "Pre-boarding", 
-    start_date: new Date().toISOString().split('T')[0] // Default to today YYYY-MM-DD
+    start_date: new Date().toISOString().split('T')[0] 
   });
   
   const navigate = useNavigate();

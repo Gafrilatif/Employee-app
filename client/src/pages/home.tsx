@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
 
-// 1. Update Interface to match new DB columns
 interface Employee {
   id: number;
   name: string;
   role: string;
   email: string;
-  status: string;      // NEW
-  start_date: string;  // NEW
+  status: string;      
+  start_date: string;  
 }
 
 export default function Home() {
@@ -28,7 +27,6 @@ export default function Home() {
 
   const deleteEmployee = async (id: number) => {
     try {
-      // Add a confirmation before deleting
       if(!window.confirm("Are you sure you want to delete this employee?")) return;
 
       await fetch(`http://localhost:5000/employees/${id}`, { method: "DELETE" });
@@ -38,13 +36,12 @@ export default function Home() {
     }
   };
 
-  // 2. Helper function for Status Colors
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Active': return '#d4edda';       // Greenish
-      case 'Onboarding': return '#fff3cd';   // Yellowish
-      case 'Pre-boarding': return '#e2e3e5'; // Greyish
-      case 'Hold': return '#f8d7da';         // Reddish
+      case 'Active': return '#d4edda';       
+      case 'Onboarding': return '#fff3cd';   
+      case 'Pre-boarding': return '#e2e3e5'; 
+      case 'Hold': return '#f8d7da';         
       default: return 'white';
     }
   };
