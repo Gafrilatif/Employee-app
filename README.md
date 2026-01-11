@@ -1,6 +1,6 @@
 # Employee Management System
 
-A full-stack application for managing employee records, built to demonstrate modern web development practices. This project features a REST API, server-side search filtering, and a responsive frontend.
+A modern Full Stack Web Application designed to streamline the HR process of onboarding new employees. Built using the **PERN Stack** (PostgreSQL, Express, React, Node.js), this system allows administrators to easily register new hires, track their onboarding progress, and manage employee data in real-time.
 
 ## 🚀 Tech Stack
 - **Frontend:** React, TypeScript, Vite
